@@ -1,7 +1,7 @@
 
 # Pumpkin Price Classification using Decision Tree
 
-## 1️⃣ Project Overview
+## Project Overview
 This project aims to classify pumpkin prices into three categories:
 - Low
 - Medium
@@ -23,7 +23,7 @@ We selected Decision Tree because:
 - Works well with categorical + numerical data
 - No need for feature scaling
 - Provides feature importance
-- ❗Downside: prone to overfitting → solved later with tuning
+- Downside: prone to overfitting → solved later with tuning
 
 ### Dataset
 - Rows: 1757
@@ -158,7 +158,7 @@ Some confusion exists between Medium and High.
 <img width="1570" height="810" alt="image" src="https://github.com/user-attachments/assets/3f8ab38e-3b55-452f-b88f-3571f160ffaf" />
 ---
 
-### 🔍 Key Insights from the Model
+### Key Insights from the Model
 
 > [!IMPORTANT]
 > **Primary Split:** 'Package <= 4.5'
