@@ -193,6 +193,7 @@ The following table breaks down the predictive power of each feature in our mode
 * **Physical Traits:** Both **Size** and **Type (Variety)** have a moderate, yet measurable impact on the outcome.
 
 ---
+
 ### Phase 6: Overfitting & Optimization
 # Problem:
 A Decision Tree might: Overfitting (save data instead of interpreting it)
