@@ -155,28 +155,41 @@ Some confusion exists between Medium and High.
 ---
 ### Phase 5: Decision Tree Visualization
 <img width="1570" height="810" alt="image" src="https://github.com/user-attachments/assets/3f8ab38e-3b55-452f-b88f-3571f160ffaf" />
+---
 
-# Most important note:
-First split: Package <= 4.5
-Explanation: Package is the most important factor in pricing.
-# Next:
-- City Name
-- Variety
-- Item Size
+### 🔍 Key Insights from the Model
 
-# Feature Importance
-| Feature   | Importance |
-| --------- | ---------- |
-| Package   | 0.46       |
-| Variety   | 0.15       |
-| City Name | 0.10       |
-| Item Size | 0.07       |
-| Origin    | 0.06       |
+> [!IMPORTANT]
+> **Primary Split:** 'Package <= 4.5'
+> 
+> **Explanation:** The **Package** type is identified as the most critical factor influencing the final price.
 
-# Conclusion:
-Packaging has the greatest impact on price.
-Location (city) is important.
-Size and type have a moderate impact.
+#### 📈 Feature Priority
+After the initial split, the model relies on these features (in order):
+1. **City Name**
+2. **Variety**
+3. **Item Size**
+
+---
+
+### 📊 Feature Importance Summary
+
+The following table breaks down the predictive power of each feature in our model:
+
+| Feature    | Importance |
+| :--------- | :--------- |
+| **Package** | '0.46`      |
+| **Variety** | '0.15`      |
+| **City Name** | '0.10`      |
+| **Item Size** | '0.07`      |
+| **Origin** | '0.06`      |
+
+---
+
+### 💡 Conclusion
+* **Packaging:** Has the greatest impact on price determination.
+* **Location:** The specific **City** plays a significant secondary role.
+* **Physical Traits:** Both **Size** and **Type (Variety)** have a moderate, yet measurable impact on the outcome.
 
 
 
