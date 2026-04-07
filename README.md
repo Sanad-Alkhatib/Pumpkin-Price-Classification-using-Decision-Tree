@@ -25,8 +25,8 @@ We selected Decision Tree because:
 - ❗Downside: prone to overfitting → solved later with tuning
 
 ### Dataset
-📌 Rows: 1757
-📌 Columns: 26 → cleaned to 17
+- Rows: 1757
+- Columns: 26 → cleaned to 17
 ['City Name', 'Type', 'Package', 'Variety', 'Sub Variety', 'Date', 'Low Price', 'High Price', 'Mostly Low', 'Mostly High', 'Origin', 'Origin District', 'Item Size', 'Color', 'Unit of Sale', 'Repack', 'Unnamed: 25']
 - This project uses the dataset from [Microsoft ML-For-Beginners](https://github.com/microsoft/ML-For-Beginners).
 
