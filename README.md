@@ -159,7 +159,7 @@ Some confusion exists between Medium and High.
 # Most important note:
 First split: Package <= 4.5
 Explanation: Package is the most important factor in pricing.
-#Next:
+# Next:
 - City Name
 - Variety
 - Item Size
