@@ -22,4 +22,66 @@ We selected Decision Tree because:
 - Works well with categorical + numerical data
 - No need for feature scaling
 - Provides feature importance
-❗ Downside: prone to overfitting → solved later with tuning
+- ❗Downside: prone to overfitting → solved later with tuning
+
+### Dataset
+📌 Rows: 1757
+📌 Columns: 26 → cleaned to 17
+['City Name', 'Type', 'Package', 'Variety', 'Sub Variety', 'Date', 'Low Price', 'High Price', 'Mostly Low', 'Mostly High', 'Origin', 'Origin District', 'Item Size', 'Color', 'Unit of Sale', 'Repack', 'Unnamed: 25']
+- This project uses the dataset from [Microsoft ML-For-Beginners](https://github.com/microsoft/ML-For-Beginners).
+
+### Phase 1: Data Exploration (EDA)
+'''python
+print(df.head())
+print(df.dtypes)
+print(df.describe())
+print(df.isnull().sum())
+'''
+### Why?
+- Understanding data structure
+- Discovering values
+- Identifying the type of each feature
+
+### Data Cleaning
+Delete all empty columns
+'''python
+df_cleaned = df.dropna(axis=1, how='all')
+'''
+
+### Why?
+Because empty columns serve no purpose and cause noise in the model.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
