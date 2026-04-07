@@ -1,220 +1,177 @@
-# Pumpkin Price Classification using Decision Tree
-
-## 1️⃣ Project Overview
-This project aims to classify pumpkin prices into three categories:
-- Low
-- Medium
-- High
-using a Decision Tree Classifier based on historical pumpkin market data.
-
-### Goal
-Build a machine learning model that:
-- Understands factors affecting pumpkin prices
-- Classifies prices accurately
-- Provides interpretable results (not black-box)
-
-
-### Why Decision Tree?
-
-We selected Decision Tree because:
-
-- Easy to interpret (you can visualize decisions)
-- Works well with categorical + numerical data
-- No need for feature scaling
-- Provides feature importance
-- ❗Downside: prone to overfitting → solved later with tuning
-
-### Dataset
-- Rows: 1757
-- Columns: 26 → cleaned to 17
-['City Name', 'Type', 'Package', 'Variety', 'Sub Variety', 'Date', 'Low Price', 'High Price', 'Mostly Low', 'Mostly High', 'Origin', 'Origin District', 'Item Size', 'Color', 'Unit of Sale', 'Repack', 'Unnamed: 25']
-- This project uses the dataset from [Microsoft ML-For-Beginners](https://github.com/microsoft/ML-For-Beginners).
 
 ---
 
-### Phase 1: Data Exploration (EDA)
-'''python
+## 🧠 Why Decision Tree?
+
+We selected **Decision Tree** because:
+
+✅ Easy to understand and visualize  
+✅ Handles both categorical & numerical data  
+✅ No need for feature scaling  
+✅ Provides feature importance  
+❗ Can overfit → handled later with tuning  
+
+---
+
+## 📂 Dataset Information
+
+- 📏 Rows: **1757**
+- 📊 Columns: **26 → cleaned to 17**
+
+### Features Used:
+
+City Name, Type, Package, Variety, Sub Variety, Date,
+Low Price, High Price, Mostly Low, Mostly High,
+Origin, Origin District, Item Size, Color,
+Unit of Sale, Repack
+
+
+📎 Dataset Source:  
+[Microsoft ML For Beginners](https://github.com/microsoft/ML-For-Beginners)
+
+---
+
+# 🔍 Phase 1: Data Exploration (EDA)
+
+```python
 print(df.head())
 print(df.dtypes)
 print(df.describe())
 print(df.isnull().sum())
-'''
-### Why?
-- Understanding data structure
-- Discovering values
-- Identifying the type of each feature
-
-### Data Cleaning
-Delete all empty columns
-'''python
+🎯 Why?
+Understand dataset structure
+Identify feature types
+Detect missing values
+🧹 Data Cleaning
+حذف الأعمدة الفارغة:
 df_cleaned = df.dropna(axis=1, how='all')
-'''
+💡 Why?
 
-### Why?
-Because empty columns serve no purpose and cause noise in the model.
+Columns with all missing values add noise and no value.
 
-### Handling missing values
-Categorical
-'''python
+⚠️ Handling Missing Values
+🏷️ Categorical:
 df_cleaned[col] = df_cleaned[col].fillna('Unknown')
-'''
-Numerical
-'''python
+🔢 Numerical:
 df_cleaned[col] = df_cleaned[col].fillna(df_cleaned[col].median())
-'''
-### Why?
-
-Categorical → We preserve data without deletion.
-Numerical → median is better than mean because it is resistant to outliers.
-
-### Feature Engineering
-Creating Average Price
-'''python
+💡 Why?
+Categorical → preserve data
+Numerical → median resists outliers
+⚙️ Feature Engineering
+📊 Create Average Price
 df_cleaned['Average_Price'] = (df_cleaned['Low Price'] + df_cleaned['High Price']) / 2
-'''
-### Why?
-Because we have two prices → we need one value that represents the true price.
+💡 Why?
 
-Convert price to rating
-'''python
-df_cleaned['Price_Range'] = pd.qcut(df_cleaned['Average_Price'], q=3, labels=['Low', 'Medium', 'High'])
-'''
+To combine price range into a single meaningful value
 
-### Why?
-We changed the problem from Regression  → Classification. 
-We used qcut because it divides the data in a balanced way.
-
-### Encoding
-'''python
+🔄 Convert to Classification Problem
+df_cleaned['Price_Range'] = pd.qcut(
+    df_cleaned['Average_Price'],
+    q=3,
+    labels=['Low', 'Medium', 'High']
+)
+💡 Why?
+تحويل المشكلة من Regression → Classification
+qcut يعطي توزيع متوازن
+🔢 Encoding
 le = LabelEncoder()
 df_cleaned[col] = le.fit_transform(df_cleaned[col].astype(str))
-'''
+💡 Why?
 
-### Why?
-The Decision Tree doesn't understand the text → we need to convert it to numbers.
+Models cannot understand text → convert to numbers
 
-### Feature & Target Split
-'''python
-X = df_cleaned.drop(['Average_Price', 'Price_Range', 'Low Price', 'High Price', 'Mostly Low', 'Mostly High'], axis=1)
+🎯 Feature & Target Split
+X = df_cleaned.drop([
+    'Average_Price', 'Price_Range',
+    'Low Price', 'High Price',
+    'Mostly Low', 'Mostly High'
+], axis=1)
+
 y = df_cleaned['Price_Range']
 y = le.fit_transform(y)
-'''
+⚠️ Why remove these columns?
 
-### Why did we delete the columns?
-Because they leaked direct price information (data leakage).
+They contain direct price info → Data Leakage
 
----
-
-### Phase 2: Train/Test Split
-
-'''python
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-'''
-
-### Why?
+✂️ Phase 2: Train/Test Split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+💡 Why?
 80% training / 20% testing
-random_state → Same results every time
-
----
-
-### Phase 3: Model Building
-'''python
+random_state ensures reproducibility
+🌳 Phase 3: Model Building
 model = DecisionTreeClassifier()
 model.fit(X_train, y_train)
-'''
+💡 Why default model?
 
-### Why default?
-To see the model's performance without any optimization (baseline).
+To establish a baseline performance
 
----
-
-### Phase 4: Model Evaluation
-Accuracy
-'''python
+📊 Phase 4: Model Evaluation
+✅ Accuracy
 accuracy = accuracy_score(y_test, y_pred)
-'''
-Result: Accuracy = 0.97
-Classification Report
-High   → Precision: 0.94 | Recall: 0.97  
-Low    → Precision: 0.99 | Recall: 1.00  
-Medium → Precision: 0.98 | Recall: 0.94  
-Analysis:
-The model is very powerful.
-Best performance was in the Low category.
-Some confusion exists between Medium and High.
 
-### Confusion Matrix 
+🎯 Result: 0.97
 
-<img width="649" height="545" alt="image" src="https://github.com/user-attachments/assets/5466beda-ee37-48cc-90ef-979db2930db2" />
+📋 Classification Report
+Class	Precision	Recall
+High	0.94	0.97
+Low	0.99	1.00
+Medium	0.98	0.94
+🧠 Analysis
+🔥 Model performance is very strong
+🟢 Best performance → Low class
+⚠️ Slight confusion → Medium vs High
+🔢 Confusion Matrix
 
-### Notes:
-- Low is rated 100% accurately 
-- Mistakes only exist between Medium and High
-- This is normal because their prices are similar
+📌 Notes:
+Low classified perfectly ✅
+Errors only between Medium & High
+طبيعي لأن الأسعار قريبة
+🌲 Phase 5: Decision Tree Visualization
 
----
-### Phase 5: Decision Tree Visualization
-<img width="1570" height="810" alt="image" src="https://github.com/user-attachments/assets/3f8ab38e-3b55-452f-b88f-3571f160ffaf" />
----
+🔍 Key Insights
 
-### 🔍 Key Insights from the Model
+🚨 Most Important Feature: Package
 
-> [!IMPORTANT]
-> **Primary Split:** 'Package <= 4.5'
-> 
-> **Explanation:** The **Package** type is identified as the most critical factor influencing the final price.
+💡 Explanation:
 
-####  Feature Priority
-After the initial split, the model relies on these features (in order):
-1. **City Name**
-2. **Variety**
-3. **Item Size**
+نوع التغليف له التأثير الأكبر على السعر
 
----
+🏆 Feature Importance Ranking
+🥇 Package (0.46)
+🥈 Variety (0.15)
+🥉 City Name (0.10)
+Item Size (0.07)
+Origin (0.06)
+⚠️ Phase 6: Overfitting & Optimization
+❌ Problem:
 
-###  Feature Importance Summary
+Decision Trees tend to overfit (memorize data)
 
-The following table breaks down the predictive power of each feature in our model:
-
-| Feature    | Importance |
-| :--------- | :--------- |
-| **Package** | '0.46'      |
-| **Variety** | '0.15'      |
-| **City Name** | '0.10'      |
-| **Item Size** | '0.07'      |
-| **Origin** | '0.06'      |
-
----
-
-###  Conclusion
-* **Packaging:** Has the greatest impact on price determination.
-* **Location:** The specific **City** plays a significant secondary role.
-* **Physical Traits:** Both **Size** and **Type (Variety)** have a moderate, yet measurable impact on the outcome.
-
----
-### Phase 6: Overfitting & Optimization
-Problem:
-A Decision Tree might: Overfitting (save data instead of interpreting it)
-
-the solution:
-'''python
+✅ Solution:
 model_tuned = DecisionTreeClassifier(max_depth=5)
-'''
-Result: Accuracy = 0.83
-Important explanation (tell this to your supervisor ): 
-The accuracy has decreased. 
-But the model is now:
-- More generalization
-- Less overfitting
+📉 Result:
 
----
+Accuracy dropped → 0.83
 
-### Conclusion
-Decision Tree performed excellently.
-The model is accurate and interpretable.
-Key factors:
-- Package
-- Variety
-- City
+🧠 Important Explanation (for Supervisor 💬)
 
+Even though accuracy decreased:
 
+✅ Model is now more generalized
+✅ Less overfitting
+✅ Better performance on unseen data
+🏁 Final Conclusion
+
+✅ Decision Tree achieved excellent performance
+✅ Model is both accurate & interpretable
+
+🔑 Key Factors Affecting Price:
+📦 Package (most important)
+🌍 City
+🌱 Variety
+🚀 Future Improvements
+Try Random Forest for better generalization
+Use GridSearchCV for hyperparameter tuning
+Feature selection for reducing noise
