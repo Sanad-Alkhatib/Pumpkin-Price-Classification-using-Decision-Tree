@@ -30,6 +30,8 @@ We selected Decision Tree because:
 ['City Name', 'Type', 'Package', 'Variety', 'Sub Variety', 'Date', 'Low Price', 'High Price', 'Mostly Low', 'Mostly High', 'Origin', 'Origin District', 'Item Size', 'Color', 'Unit of Sale', 'Repack', 'Unnamed: 25']
 - This project uses the dataset from [Microsoft ML-For-Beginners](https://github.com/microsoft/ML-For-Beginners).
 
+---
+
 ### Phase 1: Data Exploration (EDA)
 '''python
 print(df.head())
@@ -101,7 +103,10 @@ y = le.fit_transform(y)
 ### Why did we delete the columns?
 Because they leaked direct price information (data leakage).
 
+---
+
 ### Phase 2: Train/Test Split
+
 '''python
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 '''
@@ -109,6 +114,8 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 ### Why?
 80% training / 20% testing
 random_state → Same results every time
+
+---
 
 ### Phase 3: Model Building
 '''python
