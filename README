@@ -1,0 +1,25 @@
+# Pumpkin Price Classification using Decision Tree
+
+## 1️⃣ Project Overview
+This project aims to classify pumpkin prices into three categories:
+- Low
+- Medium
+- High
+using a Decision Tree Classifier based on historical pumpkin market data.
+
+### Goal
+Build a machine learning model that:
+- Understands factors affecting pumpkin prices
+- Classifies prices accurately
+- Provides interpretable results (not black-box)
+
+
+### Why Decision Tree?
+
+We selected Decision Tree because:
+
+- Easy to interpret (you can visualize decisions)
+- Works well with categorical + numerical data
+- No need for feature scaling
+- Provides feature importance
+❗ Downside: prone to overfitting → solved later with tuning
