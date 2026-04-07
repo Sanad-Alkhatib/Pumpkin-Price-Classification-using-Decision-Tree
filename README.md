@@ -164,7 +164,7 @@ Some confusion exists between Medium and High.
 > 
 > **Explanation:** The **Package** type is identified as the most critical factor influencing the final price.
 
-#### 📈 Feature Priority
+####  Feature Priority
 After the initial split, the model relies on these features (in order):
 1. **City Name**
 2. **Variety**
@@ -172,21 +172,21 @@ After the initial split, the model relies on these features (in order):
 
 ---
 
-### 📊 Feature Importance Summary
+###  Feature Importance Summary
 
 The following table breaks down the predictive power of each feature in our model:
 
 | Feature    | Importance |
 | :--------- | :--------- |
-| **Package** | '0.46`      |
-| **Variety** | '0.15`      |
-| **City Name** | '0.10`      |
-| **Item Size** | '0.07`      |
-| **Origin** | '0.06`      |
+| **Package** | '0.46'      |
+| **Variety** | '0.15'      |
+| **City Name** | '0.10'      |
+| **Item Size** | '0.07'      |
+| **Origin** | '0.06'      |
 
 ---
 
-### 💡 Conclusion
+###  Conclusion
 * **Packaging:** Has the greatest impact on price determination.
 * **Location:** The specific **City** plays a significant secondary role.
 * **Physical Traits:** Both **Size** and **Type (Variety)** have a moderate, yet measurable impact on the outcome.
