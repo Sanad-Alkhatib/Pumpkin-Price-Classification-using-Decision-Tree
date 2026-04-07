@@ -191,11 +191,30 @@ The following table breaks down the predictive power of each feature in our mode
 * **Location:** The specific **City** plays a significant secondary role.
 * **Physical Traits:** Both **Size** and **Type (Variety)** have a moderate, yet measurable impact on the outcome.
 
+---
+### Phase 6: Overfitting & Optimization
+Problem:
+A Decision Tree might: Overfitting (save data instead of interpreting it)
 
+the solution:
+'''python
+model_tuned = DecisionTreeClassifier(max_depth=5)
+'''
+Result: Accuracy = 0.83
+Important explanation (tell this to your supervisor ): 
+The accuracy has decreased. 
+But the model is now:
+- More generalization
+- Less overfitting
 
+---
 
-
-
-
+### Conclusion
+Decision Tree performed excellently.
+The model is accurate and interpretable.
+Key factors:
+- Package
+- Variety
+- City
 
 
