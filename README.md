@@ -156,7 +156,7 @@ Some confusion exists between Medium and High.
 ### Phase 5: Decision Tree Visualization
 <img width="1570" height="810" alt="image" src="https://github.com/user-attachments/assets/3f8ab38e-3b55-452f-b88f-3571f160ffaf" />
 
-Most important note:
+# Most important note:
 First split: Package <= 4.5
 Explanation: Package is the most important factor in pricing.
 Next:
@@ -173,7 +173,7 @@ Next:
 | Item Size | 0.07       |
 | Origin    | 0.06       |
 
-Conclusion:
+# Conclusion:
 Packaging has the greatest impact on price.
 Location (city) is important.
 Size and type have a moderate impact.
