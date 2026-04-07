@@ -126,6 +126,8 @@ model.fit(X_train, y_train)
 ### Why default?
 To see the model's performance without any optimization (baseline).
 
+---
+
 ### Phase 4: Model Evaluation
 Accuracy
 '''python
@@ -143,9 +145,36 @@ Some confusion exists between Medium and High.
 
 ### Confusion Matrix 
 
+<img width="649" height="545" alt="image" src="https://github.com/user-attachments/assets/5466beda-ee37-48cc-90ef-979db2930db2" />
+Notes:
+- Low is rated 100% accurately 
+- Mistakes only exist between Medium and High
+- This is normal because their prices are similar
 
+---
+### Phase 5: Decision Tree Visualization
+<img width="1570" height="810" alt="image" src="https://github.com/user-attachments/assets/3f8ab38e-3b55-452f-b88f-3571f160ffaf" />
+Most important note:
+First split: Package <= 4.5
+Explanation: Package is the most important factor in pricing.
+Next:
+- City Name
+- Variety
+- Item Size
 
+### Feature Importance
+| Feature   | Importance |
+| --------- | ---------- |
+| Package   | 0.46       |
+| Variety   | 0.15       |
+| City Name | 0.10       |
+| Item Size | 0.07       |
+| Origin    | 0.06       |
 
+Conclusion:
+Packaging has the greatest impact on price.
+Location (city) is important.
+Size and type have a moderate impact.
 
 
 
