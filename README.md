@@ -194,14 +194,14 @@ The following table breaks down the predictive power of each feature in our mode
 
 ---
 ### Phase 6: Overfitting & Optimization
-Problem:
+# Problem:
 A Decision Tree might: Overfitting (save data instead of interpreting it)
 
-the solution:
+# the solution:
 '''python
 model_tuned = DecisionTreeClassifier(max_depth=5)
 '''
-Result: Accuracy = 0.83
+# Result: Accuracy = 0.83
 Important explanation (tell this to your supervisor ): 
 The accuracy has decreased. 
 But the model is now:
