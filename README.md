@@ -212,9 +212,9 @@ But the model is now:
 ---
 
 ### Conclusion
-# Decision Tree performed excellently.
-# The model is accurate and interpretable.
-# Key factors:
+1 Decision Tree performed excellently.
+2 The model is accurate and interpretable.
+3 Key factors:
 - Package
 - Variety
 - City
